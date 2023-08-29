@@ -1,23 +1,43 @@
+
+/*  Header Files  */
 #include <GL/glut.h>
+
+
+/*   display function   */
 void displayMe(void)
 {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);  /*  clears the frame buffers  (clears the window screen)  */
+    /* flag -> GL_COLOR_BUFFER_BIT  */
+    
+    glLoadIdentity();  /*  resets  animations/coordinates of previous buffer  */
+    
+    /*  delimit the vertices of a primitive or a group of like primitives   */
     glBegin(GL_POLYGON);
-        glVertex3f(0.0, 0.0, 0.0);
-        glVertex3f(0.5, 0.0, 0.0);
-        glVertex3f(0.5, 0.5, 0.0);
-        glVertex3f(0.0, 0.5, 0.0);
+    
+    /*  coordinate points  */
+    /*  3f -> 3 coordinates -> floating point  */
+    glVertex3f(0.0, 0.0, 0.0);
+    glVertex3f(0.5, 0.0, 0.0);
+    glVertex3f(0.5, 0.5, 0.0);
+    glVertex3f(0.0, 0.5, 0.0);
+    
+    
     glEnd();
-    glFlush();
+    glFlush();  /*  Displays frame buffer  */
 }
+
+/*  Main Function  */
+/*  Arguments are passed  */
+/*  argc  ->  argument count  */
+/*  argv  -> argument vector  */
 int main(int argc, char** argv)
 {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE);
-    glutInitWindowSize(300, 300);
-    glutInitWindowPosition(100, 100);
-    glutCreateWindow("SAMPLE TEST");
-    glutDisplayFunc(displayMe);
-    glutMainLoop();
+    glutInit(&argc, argv);  /* function to initialize glut library   */
+    glutInitDisplayMode(GLUT_SINGLE);  /*   function to set the display mode   */
+    glutInitWindowSize(300, 300);  /*   function to set the size of the display window   */
+    glutInitWindowPosition(100, 100);  /*   function to set the position of the display window   */
+    glutCreateWindow("SAMPLE TEST");   /*   function to create display window   */
+    glutDisplayFunc(displayMe);   /*  display call back  ->   function which calls the display function to draw the graphics   */
+    glutMainLoop();   /*  program loop  ->  loop starts program starts, lopp ends program terminated  */
     return 0;
 }
