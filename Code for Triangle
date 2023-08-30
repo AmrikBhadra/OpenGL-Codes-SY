@@ -1,0 +1,22 @@
+#include<GL/glut.h>
+
+void display(){
+   glClear(GL_COLOR_BUFFER_BIT);
+   glBegin(GL_TRIANGLES);
+   glVertex2f(0.0, 0.25);
+   glVertex2f(-0.25, -0.25);
+   glVertex2f(0.25, -0.25);
+   glEnd();
+   glFlush();
+}
+
+int main(int argc, char **argv){
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE);
+    glutInitWindowSize(600, 600);
+    glutInitWindowPosition(200, 200);
+    glutCreateWindow("OpenGL Triangle");
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
