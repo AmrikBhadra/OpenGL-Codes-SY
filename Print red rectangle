@@ -1,0 +1,28 @@
+#include<Gl/glut.h>
+
+void display(){
+    glClear(GL_COLOR_BUFFER_BIT);
+
+  // for color
+    glColor3f(1.0,0.0,0.0);
+
+    glBegin(GL_POLYGON);
+    glVertex2f(-0.4, 0.2);
+    glVertex2f(0.4, .2);
+    glVertex2f(.4, -0.2);
+    glVertex2f(-0.4, -0.2);
+    glEnd();
+
+    glFlush();
+}
+
+int main(int argc, char**argv){
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_RGB);
+    glutInitWindowSize(700, 700);
+    glutInitWindowPosition(300, 300);
+    glutCreateWindow("OpenGL Lines and Points");
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
