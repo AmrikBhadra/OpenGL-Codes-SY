@@ -1,0 +1,46 @@
+#include<GL/glut.h>
+
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    //front-face
+    glColor3f(1.0, 1.0, 0.0);
+    glBegin(GL_POLYGON);
+    glVertex2f(0,0);
+    glVertex2f(0,0.5);
+    glVertex2f(0.5,0.5);
+    glVertex2f(0.5,0);
+    glEnd();
+
+    //right side-face
+    glColor3f(1.0, 0.0, 0.0);
+    glBegin(GL_POLYGON);
+    glVertex2f(0.5,0);
+    glVertex2f(0.7,0.2);
+    glVertex2f(0.7,0.7);
+    glVertex2f(0.5,0.5);
+    glEnd();
+
+    //top-face
+    glColor3f(0.0, 1.0, 0.5);
+    glBegin(GL_POLYGON);
+    glVertex2f(0.0,0.5);
+    glVertex2f(0.2,0.7);
+    glVertex2f(0.7,0.7);
+    glVertex2f(0.5,0.5);
+    glEnd();
+
+    glFlush();
+}
+
+int main(int argc, char**argv) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_RGB);
+    glutInitWindowSize(500, 500);
+    glutInitWindowPosition(100, 250);
+    glutCreateWindow("New Design");
+    glutDisplayFunc(display);
+    glutMainLoop();
+
+    return 0;
+}
