@@ -1,0 +1,78 @@
+#include <iostream>
+#include<GL/glut.h>
+int x1, x2, y1, y2;
+using namespace std;
+
+void myInit(){
+    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0, 500, 0, 250, -1, 1);
+}
+
+void drawPixel(int x, int y){
+    glBegin(GL_POINTS);
+    glVertex2f(x, y);
+    glEnd();
+}
+
+
+void draw_line(int x1, int x2, int y1, int y2){
+    int x, y, xend;
+    if(x1 < x2){
+        x = x1;
+        y = y1;
+        xend = x2;
+    }
+    else{
+        x = x2;
+        y = x2;
+        xend = x1;
+    }
+    int dx = abs(x1-x2);
+    int dy = abs(x1-x2);
+    int p = (2*dy) - dx;
+
+    drawPixel(x, y);
+
+    while(x <= xend){
+        x++;
+        if(p < 0){
+            p += (2*dy);
+        }else{
+            y++;
+            p += (2*dy) - (2*dx);
+        }
+
+        drawPixel(x, y);
+    }
+}
+
+void myDisplay(){
+    draw_line(x1, x2, y1, y2);
+    glFlush();
+}
+
+int main(int argc, char **argv)
+{
+    cout << "\nEnter x1: ";
+    cin >> x1;
+    cout << "Enter y1: ";
+    cin >> y1;
+
+    cout << "\nEnter x2: ";
+    cin >> x2;
+    cout << "Enter y2: ";
+    cin >> y2;
+
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(500, 250); // Adjusted the window size to match the coordinate system
+    glutInitWindowPosition(0, 0);
+    glutCreateWindow("Bresenham's Line Drawing");
+    myInit();
+    glutDisplayFunc(myDisplay);
+    glutMainLoop();
+    return 0;
+}
